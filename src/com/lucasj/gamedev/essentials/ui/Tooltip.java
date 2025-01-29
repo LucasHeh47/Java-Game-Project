@@ -141,7 +141,6 @@ public class Tooltip {
         
         for(String str : wrappedSubTextLines) {
         	String comparing = str.replaceAll("\\{[^}]*\\}", "");
-        	Debug.log(this, comparing);
         	if(g2d.getFontMetrics().stringWidth(comparing) > longestLine) {
         		longestLine = g2d.getFontMetrics().stringWidth(comparing);
         	}

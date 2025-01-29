@@ -18,7 +18,6 @@ public class PlayerRewarder implements EntityDeathEventListener, CoinCollectedEv
 		game.getEventManager().addListener(this, EntityDeathEvent.class);
 		game.getEventManager().addListener(this, CoinCollectedEvent.class);
 		game.getEventManager().addListener(this, WaveEndEvent.class);
-		System.out.println("This is a constructor");
 	}
 	
 	

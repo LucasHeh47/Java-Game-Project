@@ -11,6 +11,7 @@ import com.lucasj.gamedev.essentials.Game;
 import com.lucasj.gamedev.essentials.GameState;
 import com.lucasj.gamedev.events.input.MouseClickEventListener;
 import com.lucasj.gamedev.misc.Debug;
+import com.lucasj.gamedev.utils.RandomUtilities;
 
 public class Button extends UIComponent implements MouseClickEventListener {
     private String text;
@@ -92,7 +93,7 @@ public class Button extends UIComponent implements MouseClickEventListener {
         int textX = x + (width - textWidth) / 2;
         int textY = y + (height + g2d.getFontMetrics().getAscent()) / 2 - 5;
         
-        g2d.setColor(Color.black);
+        g2d.setColor(RandomUtilities.getShadowColor(textColor, bgColor, 0.3f));
         g2d.drawString(text, textX, textY+3);
         g2d.setColor(textColor);
         g2d.drawString(text, textX, textY);

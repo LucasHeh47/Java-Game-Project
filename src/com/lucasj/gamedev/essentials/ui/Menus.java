@@ -18,6 +18,7 @@ import javax.swing.SwingUtilities;
 import com.lucasj.gamedev.Assets.SpriteTools;
 import com.lucasj.gamedev.essentials.Game;
 import com.lucasj.gamedev.essentials.GameState;
+import com.lucasj.gamedev.essentials.ui.components.GradientText;
 import com.lucasj.gamedev.events.input.MouseClickEventListener;
 import com.lucasj.gamedev.events.input.MouseMotionEventListener;
 import com.lucasj.gamedev.game.entities.player.Player;
@@ -41,6 +42,8 @@ public class Menus implements MouseClickEventListener, MouseMotionEventListener 
     
     private Tooltip activeTooltip = null;
     
+    private ConcurrentList<GradientText> gradientTextsOnScreen;
+    
     private Vector2D mousePos;
     
     private LevelUpShopCategories lvlUpShop = LevelUpShopCategories.None;
@@ -54,11 +57,18 @@ public class Menus implements MouseClickEventListener, MouseMotionEventListener 
     	mousePos = new Vector2D(0, 0);
     	this.game = game;
     	this.GUIs = new ConcurrentList<>();
+    	this.gradientTextsOnScreen = new ConcurrentList<>();
     	createGUIs();
     }
     
     public void update() {
     	GUIs.update();
+    	
+    	this.gradientTextsOnScreen.forEach(text -> {
+    		text.update();
+    	});
+    	
+    	this.gradientTextsOnScreen.update();
     }
     
     private GUI playerUpgradeMenu;
@@ -786,6 +796,9 @@ public class Menus implements MouseClickEventListener, MouseMotionEventListener 
 			this.activeTooltip = game.getPlayer().getActiveTooltip();
 		}
 		Render render = new Render(Layer.UI, g -> {
+			this.gradientTextsOnScreen.forEach(text -> {
+				text.render(g);
+			});
 			Graphics2D g2d = (Graphics2D) g;
 	        Font font = game.font;
 	        g2d.setFont(font);
@@ -812,7 +825,6 @@ public class Menus implements MouseClickEventListener, MouseMotionEventListener 
 	            g2d.drawString(title, (game.getWidth() - titleWidth)/2 + 7, 300 + 7);
 	        }
 	        if(game.getGameState() == GameState.wavesmenu) {
-	        	
 	        	
 	        	if(game.party != null && game.party.getHost() != null) {
 	        		g2d.setFont(game.font.deriveFont(128));

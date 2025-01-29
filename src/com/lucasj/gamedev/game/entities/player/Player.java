@@ -1047,6 +1047,7 @@ public class Player extends Entity implements PlayerMP, MouseClickEventListener,
 	@Override
 	public void onMouseDragged(MouseEvent e) {
 		this.onMouseMoved(e);
+		if(!game.getWavesManager().hasGameStarted()) return;
 		this.handleTooltips(e);
 	}
 

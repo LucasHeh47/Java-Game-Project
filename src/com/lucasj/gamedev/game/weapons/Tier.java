@@ -11,7 +11,8 @@ public enum Tier {
 	Legendary(5),
 	Mythic(6),
 	Divine(7),
-	Ethereal(8);
+	Ethereal(8),
+	Celestial(9); // Gradient colord - soon
 	
 	private int tier;
 
