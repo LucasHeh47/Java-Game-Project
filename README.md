@@ -1,2 +1,1 @@
-# LongTermGameProject
-Game made in 100% java with plans on releasing on steam eventually
+Project to learn as much of java, data structures, and algorithms, that i do not currently know
